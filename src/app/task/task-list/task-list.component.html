@@ -1,2 +1,43 @@
-<p>task-list works!</p>
-<button [routerLink]="['/tasks', id]">タスク一覧</button>
+<div id="task-detail">
+  <div class="container _task-container">
+    <div class="_header">
+      <h2>タスク詳細</h2>
+    </div>
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>詳細リンク</th>
+          <th>ID</th>
+          <th>タイトル</th>
+          <th>優先度</th>
+          <th>締め切り</th>
+          <th>詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+        *ngFor="let task of tasks"
+        >
+          <td>
+            <a routerLink="/tasks/{{task.id}}">タスク詳細</a>
+          </td>
+          <td>
+            <p>{{ task.id }}</p>
+          </td>
+          <td>
+            <p>{{ task.name }}</p>
+          </td>
+          <td>
+            <p>{{ task.priority }}</p>
+          </td>
+          <td>
+            <p>{{ task.deadline }}</p>
+          </td>
+          <td>
+            {{ task.description }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
