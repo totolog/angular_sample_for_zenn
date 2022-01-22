@@ -1,0 +1,20 @@
+.admin-table {
+  margin-right: auto;
+  margin-left: auto;
+  border-spacing: 0;
+  border-collapse: separate;
+  border-top: 1px solid #989898;
+  border-left: 1px solid #989898;
+  border-radius: 3px;
+}
+
+.admin-table th, .admin-table td {
+  padding: 0.5rem;
+  text-align: left;
+  border-right: 1px solid #989898;
+  border-bottom: 1px solid #989898;
+  white-space: nowrap;
+  text-align: center;
+  overflow: hidden;
+  font-size: 0.8rem;
+}
