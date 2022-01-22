@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
 import { Task } from 'src/app/model/task';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-task-detail',
@@ -7,12 +9,19 @@ import { Task } from 'src/app/model/task';
   styleUrls: ['./task-detail.component.scss']
 })
 export class TaskDetailComponent implements OnInit {
-  task!: Task;
+  task: Task = <Task>{};
 
-  constructor() { }
+  constructor(
+    private taskService: TaskService,
+    private route: ActivatedRoute
+  ) { }
   
   ngOnInit(): void {
-    this.task = new Task(1, 'aaa', '高', '2022/2/1', "いいねを10つ増やす")
+    const StringId: string | null = this.route.snapshot.paramMap.get('id');
+    if (!StringId) return
+    const id: number = Number(StringId);
+    this.taskService.get(id).subscribe((task: Task) => {
+      this.task = task
+    })
   }
-
 }
