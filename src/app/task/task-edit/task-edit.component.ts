@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Task } from 'src/app/model/task';
 import { TaskService } from 'src/app/services/task.service';
-import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-task-edit',
@@ -10,24 +10,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./task-edit.component.scss']
 })
 export class TaskEditComponent implements OnInit {
-  task: Task = <Task>{};
+  taskForm = this.fb.group({
+    id: [''],
+    name: [''],
+    priority: [''],
+    deadline: [''],
+    description: [''],
+  })
 
   constructor(
     private taskService: TaskService,
     private route: ActivatedRoute,
     private router: Router,
+    private fb: FormBuilder, 
   ) { }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.taskService.get(id).subscribe((task: Task) => {
-      this.task = task;
+      this.taskForm.setValue({
+        id: task.id,
+        name: task.name,
+        priority: task.priority,
+        deadline: task.deadline,
+        description: task.description,
+      });
     });
   }
 
   hundleSaveTask(): void {
-    console.log(this.task);
-    this.router.navigate(['/tasks']);
+    const {id, name, priority, deadline, description } = this.taskForm.getRawValue();
+    this.taskService.update(new Task(id, name, priority, deadline, description));
+    this.router.navigate(['/tasks', this.taskForm.controls['id'].value]);
   }
 
 }

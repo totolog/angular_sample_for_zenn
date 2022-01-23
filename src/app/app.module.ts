@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { TaskListComponent } from './task/task-list/task-list.component';
 import { TaskDetailComponent } from './task/task-detail/task-detail.component';
 import { TopComponent } from './top/top.component';
@@ -21,6 +21,7 @@ import { TaskEditComponent } from './task/task-edit/task-edit.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
