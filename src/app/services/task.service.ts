@@ -23,4 +23,9 @@ export class TaskService {
   get(id: number): Observable<Task> {
     return of(this.tasks[id-1])
   }
+
+  update(task_arg: Task): void {
+    const index = this.tasks.findIndex((task: Task) => task.id === task_arg.id);
+    this.tasks[index] = task_arg;
+  }
 }
