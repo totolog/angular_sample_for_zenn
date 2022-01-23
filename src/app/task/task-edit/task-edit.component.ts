@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { Task } from 'src/app/model/task';
 import { TaskService } from 'src/app/services/task.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-task-edit',
@@ -25,6 +25,9 @@ export class TaskEditComponent implements OnInit {
     private fb: FormBuilder, 
   ) { }
 
+  get name() {return this.taskForm.get('name')}
+  get priority() {return this.taskForm.get('priority')}
+
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.taskService.get(id).subscribe((task: Task) => {
@@ -39,9 +42,11 @@ export class TaskEditComponent implements OnInit {
   }
 
   hundleSaveTask(): void {
-    const {id, name, priority, deadline, description } = this.taskForm.getRawValue();
-    this.taskService.update(new Task(id, name, priority, deadline, description));
-    this.router.navigate(['/tasks', this.taskForm.controls['id'].value]);
+    if (this.taskForm.valid) {
+      const {id, name, priority, deadline, description } = this.taskForm.getRawValue();
+      this.taskService.update(new Task(id, name, priority, deadline, description));
+      this.router.navigate(['/tasks', this.taskForm.controls['id'].value]);
+    }
   }
 
 }
