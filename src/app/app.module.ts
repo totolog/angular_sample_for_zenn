@@ -3,20 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule }   from '@angular/forms';
 import { TaskListComponent } from './task/task-list/task-list.component';
 import { TaskDetailComponent } from './task/task-detail/task-detail.component';
 import { TopComponent } from './top/top.component';
+import { TaskEditComponent } from './task/task-edit/task-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskListComponent,
     TaskDetailComponent,
-    TopComponent
+    TopComponent,
+    TaskEditComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
