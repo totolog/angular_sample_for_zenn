@@ -1,0 +1,42 @@
+<div id="task-edit">
+  <div class="container _task-container">
+    <div class="_header">
+      <h2>タスク編集</h2>
+    </div>
+    <form (ngSubmit)="hundleSaveTask()">
+      <div class="_contents">
+        <div class="_id _item">
+          <div class="_label"><p>ID：</p></div>
+          <div class="_value">
+            <input type="number" name="id" [(ngModel)]="task.id">
+          </div>
+        </div>
+        <div class="_name _item">
+          <div class="_label"><p>名前：</p></div>
+          <div class="_value">
+            <input type="text" name="name" [(ngModel)]="task.name">
+          </div>
+        </div>
+        <div class="_priority _item">
+          <div class="_label"><p>優先度：</p></div>
+          <div class="_value">
+            <input type="text" name="priority" [(ngModel)]="task.priority">
+          </div>
+        </div>
+        <div class="_deadline _item">
+          <div class="_label"><p>締め切り：</p></div>
+          <div class="_value">
+            <input type="text" name="deadline" [(ngModel)]="task.deadline">
+          </div>
+        </div>
+        <div class="_description _item">
+          <div class="_label"><p>詳細：</p></div>
+          <div class="_value">
+            <textarea type="text" name="description" [(ngModel)]="task.description"></textarea>
+          </div>
+        </div>
+        <button type="submit">保存する</button>
+      </div>
+    </form>
+  </div>
+</div>
