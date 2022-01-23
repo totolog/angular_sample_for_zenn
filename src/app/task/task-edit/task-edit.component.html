@@ -14,13 +14,26 @@
         <div class="_name _item">
           <div class="_label"><p>名前：</p></div>
           <div class="_value">
-            <input type="text" formControlName="name">
+            <input type="text" formControlName="name" required>
+            <div
+              class="_alert"
+              *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+            >
+              <span *ngIf="name?.errors?.['required']">入力してください</span>
+            </div>
           </div>
         </div>
         <div class="_priority _item">
           <div class="_label"><p>優先度：</p></div>
           <div class="_value">
-            <input type="text" formControlName="priority">
+            <input type="text" formControlName="priority" required maxlength="1">
+            <div
+              class="_alert"
+              *ngIf="priority?.invalid && (priority?.dirty || priority?.touched)"
+            >
+              <span *ngIf="priority?.errors?.['required']">入力してください</span>
+              <span *ngIf="priority!.errors?.['maxlength']">1文字で入力してください</span>
+            </div>
           </div>
         </div>
         <div class="_deadline _item">
@@ -35,7 +48,10 @@
             <textarea type="text" formControlName="description"></textarea>
           </div>
         </div>
-        <button type="submit">保存する</button>
+        <p *ngIf="taskForm.invalid; else submitBtn">適切に入力してください</p>
+        <ng-template #submitBtn>
+          <button type="submit" [class._enter-able]="taskForm.valid">保存する</button>
+        </ng-template>
       </div>
     </form>
   </div>
