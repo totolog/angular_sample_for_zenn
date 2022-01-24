@@ -20,6 +20,7 @@
               *ngIf="name?.invalid && (name?.dirty || name?.touched)"
             >
               <span *ngIf="name?.errors?.['required']">入力してください</span>
+              <span *ngIf="[name?.errors?.['errorWordValidation']]">読者にいいねもらおうと依頼するのは遠慮しなさい！</span>
             </div>
           </div>
         </div>

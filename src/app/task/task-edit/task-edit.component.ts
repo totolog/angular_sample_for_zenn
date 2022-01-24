@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Task } from 'src/app/model/task';
 import { TaskService } from 'src/app/services/task.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import {errorWordValidation} from 'src/app/validations/error-words'
 
 @Component({
   selector: 'app-task-edit',
@@ -12,7 +13,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class TaskEditComponent implements OnInit {
   taskForm = this.fb.group({
     id: [''],
-    name: [''],
+    name: ['', errorWordValidation('いいねください')],
     priority: [''],
     deadline: [''],
     description: [''],
